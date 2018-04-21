@@ -55,7 +55,7 @@ public:
 	unsigned char Data[Size];
 };
 
-Pack* Crunch(char Input)
+Pack* CrunchInt(char Input)
 {
 	auto* Output = new IntPack8;
 
@@ -64,7 +64,7 @@ Pack* Crunch(char Input)
 	return Output;
 }
 
-Pack* Crunch(short Input)
+Pack* CrunchInt(short Input)
 {
 	if (Input <= CHAR_MAX && Input >= CHAR_MIN)
 	{
@@ -85,7 +85,7 @@ Pack* Crunch(short Input)
 	}
 }
 
-Pack* Crunch(int Input)
+Pack* CrunchInt(int Input)
 {
 	if (Input <= CHAR_MAX && Input >= CHAR_MIN)
 	{
@@ -116,7 +116,7 @@ Pack* Crunch(int Input)
 }
 
 
-Pack* Crunch(long Input)
+Pack* CrunchInt(long Input)
 {
 	if (Input <= CHAR_MAX && Input >= CHAR_MIN)
 	{
@@ -156,10 +156,11 @@ Pack* Crunch(long Input)
 }
 
 template <typename IntPackType>
-typename IntPackType::UnderlyingType Restore(const IntPackType& Input)
+typename IntPackType::UnderlyingType RestoreInt(const IntPackType& Input)
 {
 	typename IntPackType::UnderlyingType Output;
 
+	memset(&Output, 0, sizeof(Output));
 	memcpy(&Output, &Input.Data, IntPackType::Size);
 
 	return Output;
