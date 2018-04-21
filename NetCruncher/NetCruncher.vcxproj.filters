@@ -6,5 +6,13 @@
     <ClInclude Include="PackageHeader.h" />
     <ClInclude Include="PackBase.h" />
     <ClInclude Include="PackTypes.h" />
+    <ClInclude Include="Packs\IntPack.h">
+      <Filter>Packs</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Packs">
+      <UniqueIdentifier>{093e6da6-7c5c-4a38-a09c-ab3812119940}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

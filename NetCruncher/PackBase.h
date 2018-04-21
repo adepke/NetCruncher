@@ -5,8 +5,12 @@
 
 #include "PackTypes.h"
 
-// Package Base Class
+// Package Base Type
 class Pack
 {
+public:
 	PackType Type;
+
+	Pack(PackType InType) : Type(InType) {}
+	virtual ~Pack() {}
 };
