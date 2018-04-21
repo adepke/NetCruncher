@@ -7,3 +7,4 @@
 
 // Packs
 #include "Packs/IntPack.h"
+#include "Packs/FloatPack.h"

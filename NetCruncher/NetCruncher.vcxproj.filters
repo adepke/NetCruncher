@@ -9,6 +9,9 @@
     <ClInclude Include="Packs\IntPack.h">
       <Filter>Packs</Filter>
     </ClInclude>
+    <ClInclude Include="Packs\FloatPack.h">
+      <Filter>Packs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Packs">
