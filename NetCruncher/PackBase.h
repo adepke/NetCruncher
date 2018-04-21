@@ -5,6 +5,8 @@
 
 #include "PackTypes.h"
 
+#include <cstring>  // memcpy()
+
 // Package Base Type
 class Pack
 {
