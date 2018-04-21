@@ -128,9 +128,17 @@ typename FloatPackType::UnderlyingType RestoreFloat(const FloatPackType& Input)
 
 	memset(&Output, 0, sizeof(Output));
 
-	for (size_t Iter = 0; Iter < FloatPackType::Size; ++Iter)
+	if (FloatPackType::Size == UnderlyingTypeSize)
 	{
-		OutputIter[UnderlyingTypeSize - Iter - 1] = Input.Data[Iter];
+		memcpy(&Output, &Input.Data, FloatPackType::Size);
+	}
+
+	else
+	{
+		for (size_t Iter = 0; Iter < FloatPackType::Size; ++Iter)
+		{
+			OutputIter[UnderlyingTypeSize - Iter - 1] = Input.Data[Iter];
+		}
 	}
 
 	return Output;
