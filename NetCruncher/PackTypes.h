@@ -14,5 +14,8 @@ enum class PackType : unsigned char
 	PT_Float16,
 	PT_Float24,
 	PT_Float32,
+	PT_Float40,
+	PT_Float48,
+	PT_Float56,
 	PT_Float64,
 };
