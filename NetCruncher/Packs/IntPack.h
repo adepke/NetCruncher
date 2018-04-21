@@ -160,7 +160,7 @@ typename IntPackType::UnderlyingType Restore(const IntPackType& Input)
 {
 	typename IntPackType::UnderlyingType Output;
 
-	memcpy(&Output, &Input, IntPackType::Size);
+	memcpy(&Output, &Input.Data, IntPackType::Size);
 
 	return Output;
 }
