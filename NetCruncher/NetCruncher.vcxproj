@@ -115,6 +115,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="NetCruncher.h" />
+    <ClInclude Include="Package.h" />
+    <ClInclude Include="PackageHeader.h" />
+    <ClInclude Include="PackBase.h" />
+    <ClInclude Include="PackTypes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
