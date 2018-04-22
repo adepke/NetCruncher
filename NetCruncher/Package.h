@@ -52,7 +52,6 @@ public:
 	friend Package StreamToPackage(std::vector<unsigned char>* Input);
 };
 
-// Byte Stream is Big Endian
 std::vector<unsigned char>* PackageToStream(Package& Input)
 {
 	unsigned short RawHeader = PackageHeaderToBytes(Input.GetHeaderCopy());
