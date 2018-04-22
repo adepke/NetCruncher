@@ -10,7 +10,7 @@
 class IntPack8 : public Pack
 {
 public:
-	static const size_t Size = 1;
+	enum { Size = 1 };
 	typedef char UnderlyingType;
 
 	IntPack8() : Pack(PackType::PT_Int8) {}
@@ -22,7 +22,7 @@ public:
 class IntPack16 : public Pack
 {
 public:
-	static const size_t Size = 2;
+	enum { Size = 2 };
 	typedef short UnderlyingType;
 
 	IntPack16() : Pack(PackType::PT_Int16) {}
@@ -34,7 +34,7 @@ public:
 class IntPack32 : public Pack
 {
 public:
-	static const size_t Size = 4;
+	enum { Size = 4 };
 	typedef int UnderlyingType;
 
 	IntPack32() : Pack(PackType::PT_Int32) {}
@@ -46,7 +46,7 @@ public:
 class IntPack64 : public Pack
 {
 public:
-	static const size_t Size = 8;
+	enum { Size = 8 };
 	typedef long UnderlyingType;
 
 	IntPack64() : Pack(PackType::PT_Int64) {}

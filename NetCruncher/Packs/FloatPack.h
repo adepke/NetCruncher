@@ -8,7 +8,7 @@
 class FloatPack8 : public Pack
 {
 public:
-	static const size_t Size = 1;
+	enum { Size = 1 };
 	typedef float UnderlyingType;
 
 	FloatPack8() : Pack(PackType::PT_Float8) {}
@@ -20,7 +20,7 @@ public:
 class FloatPack16 : public Pack
 {
 public:
-	static const size_t Size = 2;
+	enum { Size = 2 };
 	typedef float UnderlyingType;
 
 	FloatPack16() : Pack(PackType::PT_Float16) {}
@@ -32,7 +32,7 @@ public:
 class FloatPack24 : public Pack
 {
 public:
-	static const size_t Size = 3;
+	enum { Size = 3 };
 	typedef float UnderlyingType;
 
 	FloatPack24() : Pack(PackType::PT_Float24) {}
@@ -44,7 +44,7 @@ public:
 class FloatPack32 : public Pack
 {
 public:
-	static const size_t Size = 4;
+	enum { Size = 4 };
 	typedef float UnderlyingType;
 
 	FloatPack32() : Pack(PackType::PT_Float32) {}
@@ -56,7 +56,7 @@ public:
 class FloatPack40 : public Pack
 {
 public:
-	static const size_t Size = 5;
+	enum { Size = 5 };
 	typedef double UnderlyingType;
 
 	FloatPack40() : Pack(PackType::PT_Float40) {}
@@ -68,7 +68,7 @@ public:
 class FloatPack48 : public Pack
 {
 public:
-	static const size_t Size = 6;
+	enum { Size = 6 };
 	typedef double UnderlyingType;
 
 	FloatPack48() : Pack(PackType::PT_Float48) {}
@@ -80,7 +80,7 @@ public:
 class FloatPack56 : public Pack
 {
 public:
-	static const size_t Size = 7;
+	enum { Size = 7 };
 	typedef double UnderlyingType;
 
 	FloatPack56() : Pack(PackType::PT_Float56) {}
@@ -92,7 +92,7 @@ public:
 class FloatPack64 : public Pack
 {
 public:
-	static const size_t Size = 8;
+	enum { Size = 8 };
 	typedef double UnderlyingType;
 
 	FloatPack64() : Pack(PackType::PT_Float64) {}
