@@ -25,8 +25,11 @@ PackageHeader BytesToPackageHeader(unsigned short Input)
 	static const unsigned int PackCountMask = 0xFFE0;
 	static const unsigned int FlagsMask = 0x001F;
 
-	Output.PackCount = Input & PackCountMask;
-	Output.Flags = Input & FlagsMask;
+	unsigned int PackCountInt = (Input & PackCountMask) >> 5;
+	unsigned int FlagsInt = Input & FlagsMask;
+
+	Output.PackCount = PackCountInt;
+	Output.Flags = FlagsInt;
 
 	return Output;
 }

@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Endianness.h" />
     <ClInclude Include="NetCruncher.h" />
     <ClInclude Include="Package.h" />
     <ClInclude Include="PackageHeader.h" />

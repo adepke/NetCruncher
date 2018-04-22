@@ -13,6 +13,7 @@
       <Filter>Packs</Filter>
     </ClInclude>
     <ClInclude Include="Restore.h" />
+    <ClInclude Include="Endianness.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Packs">

@@ -5,6 +5,7 @@
 
 #include "PackageHeader.h"
 #include "PackBase.h"
+#include "Endianness.h"
 #include <vector>
 
 // Packs
@@ -22,7 +23,10 @@ public:
 	{
 		for (size_t Iter = 0; Iter < Packs.size(); ++Iter)
 		{
-			delete Packs[Iter];
+			if (Packs[Iter])
+			{
+				delete Packs[Iter];
+			}
 		}
 	}
 
@@ -48,6 +52,7 @@ public:
 	friend Package StreamToPackage(std::vector<unsigned char>* Input);
 };
 
+// Byte Stream is Big Endian
 std::vector<unsigned char>* PackageToStream(Package& Input)
 {
 	unsigned short RawHeader = PackageHeaderToBytes(Input.GetHeaderCopy());
@@ -78,72 +83,96 @@ std::vector<unsigned char>* PackageToStream(Package& Input)
 			auto* const SpecificPack = static_cast<IntPack8*>(_Pack);
 			Size = SpecificPack->Size;
 			Data = SpecificPack->Data;
+
+			break;
 		}
 		case PackType::PT_Int16:
 		{
 			auto* const SpecificPack = static_cast<IntPack16*>(_Pack);
 			Size = SpecificPack->Size;
 			Data = SpecificPack->Data;
+
+			break;
 		}
 		case PackType::PT_Int32:
 		{
 			auto* const SpecificPack = static_cast<IntPack32*>(_Pack);
 			Size = SpecificPack->Size;
 			Data = SpecificPack->Data;
+
+			break;
 		}
 		case PackType::PT_Int64:
 		{
 			auto* const SpecificPack = static_cast<IntPack64*>(_Pack);
 			Size = SpecificPack->Size;
 			Data = SpecificPack->Data;
+
+			break;
 		}
 		case PackType::PT_Float8:
 		{
 			auto* const SpecificPack = static_cast<FloatPack8*>(_Pack);
 			Size = SpecificPack->Size;
 			Data = SpecificPack->Data;
+
+			break;
 		}
 		case PackType::PT_Float16:
 		{
 			auto* const SpecificPack = static_cast<FloatPack16*>(_Pack);
 			Size = SpecificPack->Size;
 			Data = SpecificPack->Data;
+
+			break;
 		}
 		case PackType::PT_Float24:
 		{
 			auto* const SpecificPack = static_cast<FloatPack24*>(_Pack);
 			Size = SpecificPack->Size;
 			Data = SpecificPack->Data;
+
+			break;
 		}
 		case PackType::PT_Float32:
 		{
 			auto* const SpecificPack = static_cast<FloatPack32*>(_Pack);
 			Size = SpecificPack->Size;
 			Data = SpecificPack->Data;
+
+			break;
 		}
 		case PackType::PT_Float40:
 		{
 			auto* const SpecificPack = static_cast<FloatPack40*>(_Pack);
 			Size = SpecificPack->Size;
 			Data = SpecificPack->Data;
+
+			break;
 		}
 		case PackType::PT_Float48:
 		{
 			auto* const SpecificPack = static_cast<FloatPack48*>(_Pack);
 			Size = SpecificPack->Size;
 			Data = SpecificPack->Data;
+
+			break;
 		}
 		case PackType::PT_Float56:
 		{
 			auto* const SpecificPack = static_cast<FloatPack56*>(_Pack);
 			Size = SpecificPack->Size;
 			Data = SpecificPack->Data;
+
+			break;
 		}
 		case PackType::PT_Float64:
 		{
 			auto* const SpecificPack = static_cast<FloatPack64*>(_Pack);
 			Size = SpecificPack->Size;
 			Data = SpecificPack->Data;
+
+			break;
 		}
 		}
 
@@ -163,9 +192,9 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 	unsigned char RawHeaderA = Input->at(0);
 	unsigned char RawHeaderB = Input->at(1);
 
-	unsigned short RawHeader = RawHeaderA;
+	unsigned short RawHeader = RawHeaderB;
 	RawHeader <<= 8;
-	RawHeader |= RawHeaderB;
+	RawHeader |= RawHeaderA;
 
 	Output.Header = BytesToPackageHeader(RawHeader);
 
@@ -188,6 +217,8 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 			Output.Packs.push_back(_Pack);
 
 			PackOffset += _Pack->Size;
+
+			break;
 		}
 		case PackType::PT_Int16:
 		{
@@ -199,6 +230,8 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 			Output.Packs.push_back(_Pack);
 
 			PackOffset += _Pack->Size;
+
+			break;
 		}
 		case PackType::PT_Int32:
 		{
@@ -212,6 +245,8 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 			Output.Packs.push_back(_Pack);
 
 			PackOffset += _Pack->Size;
+
+			break;
 		}
 		case PackType::PT_Int64:
 		{
@@ -229,6 +264,8 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 			Output.Packs.push_back(_Pack);
 
 			PackOffset += _Pack->Size;
+
+			break;
 		}
 		case PackType::PT_Float8:
 		{
@@ -239,6 +276,8 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 			Output.Packs.push_back(_Pack);
 
 			PackOffset += _Pack->Size;
+
+			break;
 		}
 		case PackType::PT_Float16:
 		{
@@ -250,6 +289,8 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 			Output.Packs.push_back(_Pack);
 
 			PackOffset += _Pack->Size;
+
+			break;
 		}
 		case PackType::PT_Float24:
 		{
@@ -262,6 +303,8 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 			Output.Packs.push_back(_Pack);
 
 			PackOffset += _Pack->Size;
+
+			break;
 		}
 		case PackType::PT_Float32:
 		{
@@ -275,6 +318,8 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 			Output.Packs.push_back(_Pack);
 
 			PackOffset += _Pack->Size;
+
+			break;
 		}
 		case PackType::PT_Float40:
 		{
@@ -289,6 +334,8 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 			Output.Packs.push_back(_Pack);
 
 			PackOffset += _Pack->Size;
+
+			break;
 		}
 		case PackType::PT_Float48:
 		{
@@ -304,6 +351,8 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 			Output.Packs.push_back(_Pack);
 
 			PackOffset += _Pack->Size;
+
+			break;
 		}
 		case PackType::PT_Float56:
 		{
@@ -320,6 +369,8 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 			Output.Packs.push_back(_Pack);
 
 			PackOffset += _Pack->Size;
+
+			break;
 		}
 		case PackType::PT_Float64:
 		{
@@ -337,6 +388,8 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 			Output.Packs.push_back(_Pack);
 
 			PackOffset += _Pack->Size;
+
+			break;
 		}
 		}
 	}
