@@ -12,6 +12,7 @@
     <ClInclude Include="Packs\FloatPack.h">
       <Filter>Packs</Filter>
     </ClInclude>
+    <ClInclude Include="Restore.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Packs">

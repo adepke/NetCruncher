@@ -122,6 +122,7 @@
     <ClInclude Include="Packs\FloatPack.h" />
     <ClInclude Include="Packs\IntPack.h" />
     <ClInclude Include="PackTypes.h" />
+    <ClInclude Include="Restore.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
