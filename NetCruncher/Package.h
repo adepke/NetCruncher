@@ -15,7 +15,13 @@ class Package
 {
 public:
 	Package() {}
-	~Package() {}
+	~Package()
+	{
+		for (int Iter = 0; Iter < Packs.size(); ++Iter)
+		{
+			delete Packs[Iter];
+		}
+	}
 
 	PackageHeader Header;
 
@@ -128,4 +134,22 @@ std::vector<unsigned char>* PackageToStream(const Package& Input)
 	}
 
 	return Stream;
+}
+
+Package StreamToPackage(std::vector<unsigned char>* Input)
+{
+	Package Output;
+
+	unsigned char RawHeaderA = Input->at(0);
+	unsigned char RawHeaderB = Input->at(1);
+
+	unsigned short RawHeader = RawHeaderA;
+	RawHeader <<= 8;
+	RawHeader |= RawHeaderB;
+
+	Output.Header = BytesToPackageHeader(RawHeader);
+
+
+
+	return Output;
 }

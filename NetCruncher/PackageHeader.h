@@ -17,3 +17,16 @@ unsigned short PackageHeaderToBytes(PackageHeader Input)
 
 	return Output;
 }
+
+PackageHeader BytesToPackageHeader(unsigned short Input)
+{
+	PackageHeader Output;
+
+	static const unsigned int PackCountMask = 0xFFE0;
+	static const unsigned int FlagsMask = 0x001F;
+
+	Output.PackCount = Input & PackCountMask;
+	Output.Flags = Input & FlagsMask;
+
+	return Output;
+}
