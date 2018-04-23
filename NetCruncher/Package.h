@@ -60,13 +60,13 @@ std::vector<unsigned char>* PackageToStream(Package& Input)
 	auto* Stream = new std::vector<unsigned char>();
 
 	// Store the Header Length and Flags.
-	Stream->push_back(RawHeaderIter[0]);
-	Stream->push_back(RawHeaderIter[1]);
+	Stream->push_back(SwapOrder(RawHeaderIter[0]));
+	Stream->push_back(SwapOrder(RawHeaderIter[1]));
 
 	// Store the Header Pack Types.
 	for (auto _Pack : Input.Packs)
 	{
-		Stream->push_back(static_cast<unsigned char>(_Pack->Type));
+		Stream->push_back(SwapOrder(static_cast<unsigned char>(_Pack->Type)));
 	}
 
 	// Store the Data Payloads.
@@ -177,7 +177,7 @@ std::vector<unsigned char>* PackageToStream(Package& Input)
 
 		for (int ByteIter = 0; ByteIter < Size; ++ByteIter)
 		{
-			Stream->push_back(Data[ByteIter]);
+			Stream->push_back(SwapOrder(Data[ByteIter]));
 		}
 	}
 
@@ -191,6 +191,9 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 	unsigned char RawHeaderA = Input->at(0);
 	unsigned char RawHeaderB = Input->at(1);
 
+	RawHeaderA = SwapOrder(RawHeaderA);
+	RawHeaderB = SwapOrder(RawHeaderB);
+
 	unsigned short RawHeader = RawHeaderB;
 	RawHeader <<= 8;
 	RawHeader |= RawHeaderA;
@@ -203,7 +206,7 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 	for (unsigned int Iter = 0; Iter < Output.Header.PackCount; ++Iter)
 	{
 		// Get the Type.
-		const PackType Type = static_cast<PackType>(Input->at(Iter + 2));
+		const PackType Type = static_cast<PackType>(SwapOrder(Input->at(Iter + 2)));
 
 		switch (Type)
 		{
@@ -211,7 +214,7 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 		{
 			auto* _Pack = new IntPack8();
 
-			_Pack->Data[0] = Input->at(0 + PackOffset);
+			_Pack->Data[0] = SwapOrder(Input->at(0 + PackOffset));
 
 			Output.Packs.push_back(_Pack);
 
@@ -223,8 +226,8 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 		{
 			auto* _Pack = new IntPack16();
 
-			_Pack->Data[0] = Input->at(0 + PackOffset);
-			_Pack->Data[1] = Input->at(1 + PackOffset);
+			_Pack->Data[0] = SwapOrder(Input->at(0 + PackOffset));
+			_Pack->Data[1] = SwapOrder(Input->at(1 + PackOffset));
 
 			Output.Packs.push_back(_Pack);
 
@@ -236,10 +239,10 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 		{
 			auto* _Pack = new IntPack32();
 
-			_Pack->Data[0] = Input->at(0 + PackOffset);
-			_Pack->Data[1] = Input->at(1 + PackOffset);
-			_Pack->Data[2] = Input->at(2 + PackOffset);
-			_Pack->Data[3] = Input->at(3 + PackOffset);
+			_Pack->Data[0] = SwapOrder(Input->at(0 + PackOffset));
+			_Pack->Data[1] = SwapOrder(Input->at(1 + PackOffset));
+			_Pack->Data[2] = SwapOrder(Input->at(2 + PackOffset));
+			_Pack->Data[3] = SwapOrder(Input->at(3 + PackOffset));
 
 			Output.Packs.push_back(_Pack);
 
@@ -251,14 +254,14 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 		{
 			auto* _Pack = new IntPack64();
 
-			_Pack->Data[0] = Input->at(0 + PackOffset);
-			_Pack->Data[1] = Input->at(1 + PackOffset);
-			_Pack->Data[2] = Input->at(2 + PackOffset);
-			_Pack->Data[3] = Input->at(3 + PackOffset);
-			_Pack->Data[4] = Input->at(4 + PackOffset);
-			_Pack->Data[5] = Input->at(5 + PackOffset);
-			_Pack->Data[6] = Input->at(6 + PackOffset);
-			_Pack->Data[7] = Input->at(7 + PackOffset);
+			_Pack->Data[0] = SwapOrder(Input->at(0 + PackOffset));
+			_Pack->Data[1] = SwapOrder(Input->at(1 + PackOffset));
+			_Pack->Data[2] = SwapOrder(Input->at(2 + PackOffset));
+			_Pack->Data[3] = SwapOrder(Input->at(3 + PackOffset));
+			_Pack->Data[4] = SwapOrder(Input->at(4 + PackOffset));
+			_Pack->Data[5] = SwapOrder(Input->at(5 + PackOffset));
+			_Pack->Data[6] = SwapOrder(Input->at(6 + PackOffset));
+			_Pack->Data[7] = SwapOrder(Input->at(7 + PackOffset));
 
 			Output.Packs.push_back(_Pack);
 
@@ -270,7 +273,7 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 		{
 			auto* _Pack = new FloatPack8();
 
-			_Pack->Data[0] = Input->at(0 + PackOffset);
+			_Pack->Data[0] = SwapOrder(Input->at(0 + PackOffset));
 
 			Output.Packs.push_back(_Pack);
 
@@ -282,8 +285,8 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 		{
 			auto* _Pack = new FloatPack16();
 
-			_Pack->Data[0] = Input->at(0 + PackOffset);
-			_Pack->Data[1] = Input->at(1 + PackOffset);
+			_Pack->Data[0] = SwapOrder(Input->at(0 + PackOffset));
+			_Pack->Data[1] = SwapOrder(Input->at(1 + PackOffset));
 
 			Output.Packs.push_back(_Pack);
 
@@ -295,9 +298,9 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 		{
 			auto* _Pack = new FloatPack24();
 
-			_Pack->Data[0] = Input->at(0 + PackOffset);
-			_Pack->Data[1] = Input->at(1 + PackOffset);
-			_Pack->Data[2] = Input->at(2 + PackOffset);
+			_Pack->Data[0] = SwapOrder(Input->at(0 + PackOffset));
+			_Pack->Data[1] = SwapOrder(Input->at(1 + PackOffset));
+			_Pack->Data[2] = SwapOrder(Input->at(2 + PackOffset));
 
 			Output.Packs.push_back(_Pack);
 
@@ -309,10 +312,10 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 		{
 			auto* _Pack = new FloatPack32();
 
-			_Pack->Data[0] = Input->at(0 + PackOffset);
-			_Pack->Data[1] = Input->at(1 + PackOffset);
-			_Pack->Data[2] = Input->at(2 + PackOffset);
-			_Pack->Data[3] = Input->at(3 + PackOffset);
+			_Pack->Data[0] = SwapOrder(Input->at(0 + PackOffset));
+			_Pack->Data[1] = SwapOrder(Input->at(1 + PackOffset));
+			_Pack->Data[2] = SwapOrder(Input->at(2 + PackOffset));
+			_Pack->Data[3] = SwapOrder(Input->at(3 + PackOffset));
 
 			Output.Packs.push_back(_Pack);
 
@@ -324,11 +327,11 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 		{
 			auto* _Pack = new FloatPack40();
 
-			_Pack->Data[0] = Input->at(0 + PackOffset);
-			_Pack->Data[1] = Input->at(1 + PackOffset);
-			_Pack->Data[2] = Input->at(2 + PackOffset);
-			_Pack->Data[3] = Input->at(3 + PackOffset);
-			_Pack->Data[4] = Input->at(4 + PackOffset);
+			_Pack->Data[0] = SwapOrder(Input->at(0 + PackOffset));
+			_Pack->Data[1] = SwapOrder(Input->at(1 + PackOffset));
+			_Pack->Data[2] = SwapOrder(Input->at(2 + PackOffset));
+			_Pack->Data[3] = SwapOrder(Input->at(3 + PackOffset));
+			_Pack->Data[4] = SwapOrder(Input->at(4 + PackOffset));
 
 			Output.Packs.push_back(_Pack);
 
@@ -340,12 +343,12 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 		{
 			auto* _Pack = new FloatPack48();
 
-			_Pack->Data[0] = Input->at(0 + PackOffset);
-			_Pack->Data[1] = Input->at(1 + PackOffset);
-			_Pack->Data[2] = Input->at(2 + PackOffset);
-			_Pack->Data[3] = Input->at(3 + PackOffset);
-			_Pack->Data[4] = Input->at(4 + PackOffset);
-			_Pack->Data[5] = Input->at(5 + PackOffset);
+			_Pack->Data[0] = SwapOrder(Input->at(0 + PackOffset));
+			_Pack->Data[1] = SwapOrder(Input->at(1 + PackOffset));
+			_Pack->Data[2] = SwapOrder(Input->at(2 + PackOffset));
+			_Pack->Data[3] = SwapOrder(Input->at(3 + PackOffset));
+			_Pack->Data[4] = SwapOrder(Input->at(4 + PackOffset));
+			_Pack->Data[5] = SwapOrder(Input->at(5 + PackOffset));
 
 			Output.Packs.push_back(_Pack);
 
@@ -357,13 +360,13 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 		{
 			auto* _Pack = new FloatPack56();
 
-			_Pack->Data[0] = Input->at(0 + PackOffset);
-			_Pack->Data[1] = Input->at(1 + PackOffset);
-			_Pack->Data[2] = Input->at(2 + PackOffset);
-			_Pack->Data[3] = Input->at(3 + PackOffset);
-			_Pack->Data[4] = Input->at(4 + PackOffset);
-			_Pack->Data[5] = Input->at(5 + PackOffset);
-			_Pack->Data[6] = Input->at(6 + PackOffset);
+			_Pack->Data[0] = SwapOrder(Input->at(0 + PackOffset));
+			_Pack->Data[1] = SwapOrder(Input->at(1 + PackOffset));
+			_Pack->Data[2] = SwapOrder(Input->at(2 + PackOffset));
+			_Pack->Data[3] = SwapOrder(Input->at(3 + PackOffset));
+			_Pack->Data[4] = SwapOrder(Input->at(4 + PackOffset));
+			_Pack->Data[5] = SwapOrder(Input->at(5 + PackOffset));
+			_Pack->Data[6] = SwapOrder(Input->at(6 + PackOffset));
 
 			Output.Packs.push_back(_Pack);
 
@@ -375,14 +378,14 @@ Package StreamToPackage(std::vector<unsigned char>* Input)
 		{
 			auto* _Pack = new FloatPack64();
 
-			_Pack->Data[0] = Input->at(0 + PackOffset);
-			_Pack->Data[1] = Input->at(1 + PackOffset);
-			_Pack->Data[2] = Input->at(2 + PackOffset);
-			_Pack->Data[3] = Input->at(3 + PackOffset);
-			_Pack->Data[4] = Input->at(4 + PackOffset);
-			_Pack->Data[5] = Input->at(5 + PackOffset);
-			_Pack->Data[6] = Input->at(6 + PackOffset);
-			_Pack->Data[7] = Input->at(7 + PackOffset);
+			_Pack->Data[0] = SwapOrder(Input->at(0 + PackOffset));
+			_Pack->Data[1] = SwapOrder(Input->at(1 + PackOffset));
+			_Pack->Data[2] = SwapOrder(Input->at(2 + PackOffset));
+			_Pack->Data[3] = SwapOrder(Input->at(3 + PackOffset));
+			_Pack->Data[4] = SwapOrder(Input->at(4 + PackOffset));
+			_Pack->Data[5] = SwapOrder(Input->at(5 + PackOffset));
+			_Pack->Data[6] = SwapOrder(Input->at(6 + PackOffset));
+			_Pack->Data[7] = SwapOrder(Input->at(7 + PackOffset));
 
 			Output.Packs.push_back(_Pack);
 

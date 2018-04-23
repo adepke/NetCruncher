@@ -9,7 +9,7 @@
 #define NC_LITTLE_ENDIAN
 #endif
 
-inline unsigned char HostToNetOrder(unsigned char Input)
+inline unsigned char SwapOrder(unsigned char Input)
 {
 #ifdef NC_LITTLE_ENDIAN
 	return ((Input * 0x0202020202ULL & 0x010884422010ULL) % 1023);
