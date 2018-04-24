@@ -47,7 +47,7 @@ class IntPack64 : public Pack
 {
 public:
 	enum { Size = 8 };
-	typedef long UnderlyingType;
+	typedef long long UnderlyingType;
 
 	IntPack64() : Pack(PackType::PT_Int64) {}
 	virtual ~IntPack64() {}
@@ -116,7 +116,7 @@ Pack* CrunchInt(int Input)
 }
 
 
-Pack* CrunchInt(long Input)
+Pack* CrunchInt(long long Input)
 {
 	if (Input <= CHAR_MAX && Input >= CHAR_MIN)
 	{

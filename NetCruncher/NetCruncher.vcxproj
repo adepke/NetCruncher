@@ -126,6 +126,7 @@
     <ClInclude Include="Restore.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Samples\Demo.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

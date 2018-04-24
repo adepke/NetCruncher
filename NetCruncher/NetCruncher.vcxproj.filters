@@ -19,8 +19,14 @@
     <Filter Include="Packs">
       <UniqueIdentifier>{093e6da6-7c5c-4a38-a09c-ab3812119940}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Samples">
+      <UniqueIdentifier>{160c5e69-0612-40df-b239-ec7db3714b40}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="..\Samples\Demo.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
