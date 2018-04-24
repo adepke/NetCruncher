@@ -9,6 +9,9 @@
 #define NC_LITTLE_ENDIAN
 #endif
 
+#pragma warning(push)
+#pragma warning(disable:4244)
+
 inline unsigned char SwapOrder(unsigned char Input)
 {
 #ifdef NC_LITTLE_ENDIAN
@@ -17,3 +20,5 @@ inline unsigned char SwapOrder(unsigned char Input)
 	return Input;
 #endif
 }
+
+#pragma warning(pop)
