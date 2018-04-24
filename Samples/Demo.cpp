@@ -68,8 +68,8 @@ int main()
 	int Integer2Final = Restore<int>(EndingPackage->Packs[1]);
 	int Integer3Final = Restore<int>(EndingPackage->Packs[2]);
 
-	int Long1Final = Restore<long>(EndingPackage->Packs[3]);
-	int Long2Final = Restore<long>(EndingPackage->Packs[4]);
+	long long Long1Final = Restore<long long>(EndingPackage->Packs[3]);
+	long long Long2Final = Restore<long long>(EndingPackage->Packs[4]);
 
 	float Float1Final = Restore<float>(EndingPackage->Packs[5]);
 	float Float2Final = Restore<float>(EndingPackage->Packs[6]);
