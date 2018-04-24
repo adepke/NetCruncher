@@ -101,6 +101,9 @@ int main()
 	std::cout << "Double2 Start:   " << std::to_string(Double2) << "\n";
 	std::cout << "Double2 End:     " << std::to_string(Double2Final) << "\n\n\n";
 
+	std::cout << "Total Size Sending Raw Data Values:    " << std::to_string(sizeof(int) * 3 + sizeof(long long) * 2 + sizeof(float) * 2 + sizeof(double) * 2) << "\n";
+	std::cout << "Total Size Sending Compressed Package: " << std::to_string(Stream->size()) << "\n\n";
+
 	// -- Cleanup. --
 
 	delete StartingPackage;
