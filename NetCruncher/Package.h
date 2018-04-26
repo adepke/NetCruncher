@@ -52,7 +52,7 @@ public:
 	friend Package* StreamToPackage(std::vector<unsigned char>* Input);
 };
 
-std::vector<unsigned char>* PackageToStream(Package& Input)
+inline std::vector<unsigned char>* PackageToStream(Package& Input)
 {
 	unsigned short RawHeader = PackageHeaderToBytes(Input.GetHeaderCopy());
 	auto* RawHeaderIter = (char*)&RawHeader;
@@ -184,7 +184,7 @@ std::vector<unsigned char>* PackageToStream(Package& Input)
 	return Stream;
 }
 
-Package* StreamToPackage(std::vector<unsigned char>* Input)
+inline Package* StreamToPackage(std::vector<unsigned char>* Input)
 {
 	Package* Output = new Package();
 

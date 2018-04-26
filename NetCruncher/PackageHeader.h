@@ -9,7 +9,7 @@ struct PackageHeader
 	unsigned int Flags : 5;
 };
 
-unsigned short PackageHeaderToBytes(PackageHeader Input)
+inline unsigned short PackageHeaderToBytes(PackageHeader Input)
 {
 	unsigned short Output = Input.PackCount;
 	Output <<= 5;
@@ -18,7 +18,7 @@ unsigned short PackageHeaderToBytes(PackageHeader Input)
 	return Output;
 }
 
-PackageHeader BytesToPackageHeader(unsigned short Input)
+inline PackageHeader BytesToPackageHeader(unsigned short Input)
 {
 	PackageHeader Output;
 

@@ -112,7 +112,7 @@ enum class FloatCompressionLevel
 	CL_6,  // Drop 6 Bytes of Precision (Double)
 };
 
-Pack* CrunchFloat(float Input, FloatCompressionLevel CompressionLevel)
+inline Pack* CrunchFloat(float Input, FloatCompressionLevel CompressionLevel)
 {
 	auto* InputIter = (char*)&Input;
 
@@ -158,7 +158,7 @@ Pack* CrunchFloat(float Input, FloatCompressionLevel CompressionLevel)
 	return nullptr;
 }
 
-Pack* CrunchFloat(double Input, FloatCompressionLevel CompressionLevel)
+inline Pack* CrunchFloat(double Input, FloatCompressionLevel CompressionLevel)
 {
 	// Double has a Different Exponent Length, So Compress After Conversion to 32 Bit Float.
 	if (CompressionLevel >= FloatCompressionLevel::CL_4)

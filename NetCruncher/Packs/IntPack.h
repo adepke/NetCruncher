@@ -55,7 +55,7 @@ public:
 	unsigned char Data[Size];
 };
 
-Pack* CrunchInt(char Input)
+inline Pack* CrunchInt(char Input)
 {
 	auto* Output = new IntPack8;
 
@@ -64,7 +64,7 @@ Pack* CrunchInt(char Input)
 	return Output;
 }
 
-Pack* CrunchInt(short Input)
+inline Pack* CrunchInt(short Input)
 {
 	if (Input <= CHAR_MAX && Input >= CHAR_MIN)
 	{
@@ -85,7 +85,7 @@ Pack* CrunchInt(short Input)
 	}
 }
 
-Pack* CrunchInt(int Input)
+inline Pack* CrunchInt(int Input)
 {
 	if (Input <= CHAR_MAX && Input >= CHAR_MIN)
 	{
@@ -116,7 +116,7 @@ Pack* CrunchInt(int Input)
 }
 
 
-Pack* CrunchInt(long long Input)
+inline Pack* CrunchInt(long long Input)
 {
 	if (Input <= CHAR_MAX && Input >= CHAR_MIN)
 	{
